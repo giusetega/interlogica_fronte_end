@@ -13,13 +13,17 @@ export default function Home() {
 
     // })
 
+    const DEV_URL = 'http://localhost:8080';
+    const PROD_URL = 'http://3.125.105.131:8080';
+
     const [sweetList, setSweetList] = useState([]);
+    const [sweetDetail, setSweetDetail] = useState([])
+    // { name: 0, quantity: 0, size: 0}
 
     useEffect(() => {
-       fetch('http://localhost:8080/api/backend/v1/')
+       fetch(PROD_URL + '/api/backend/v1/')
           .then((res) => res.json())
           .then((data) => {
-             console.log(data);
              console.log(data);
              setSweetList(data);
           })
@@ -28,26 +32,17 @@ export default function Home() {
           });
     }, []);
 
-    // let arrSweet = [
-    //     {   
-    //         "id": 1,
-    //         "name": "Tiramisu",
-    //         "quantity": 4,
-    //         "totalPrice": 7.3
-    //     },
-    //     {   
-    //         "id": 2,
-    //         "name": "Tiramisu",
-    //         "quantity": 90,
-    //         "totalPrice": 14.6
-    //     },
-    //     {   
-    //         "id": 3,
-    //         "name": "Tiramisu",
-    //         "quantity": 4,
-    //         "totalPrice": 21
-    //     }
-    // ];
+    function getSweetDetail(id) {
+        fetch(PROD_URL + "/api/backend/v1/detail/" + id)
+          .then(response => response.json())
+          .then(data => {
+            console.log("Sweet detail:", data);
+            setSweetDetail(data)
+            console.log("Sweet detail obj:", sweetDetail)
+          })
+          .catch(error => console.log("Error", error))
+      }
+
 
     const [open, setOpen] = useState(false);
     const handleOpen = (e, sweet) => {
@@ -58,6 +53,8 @@ export default function Home() {
         setSweetModalmage(sweet.image)
         setSweetModaPrice(sweet.price)
         setSweetModalQuantity(sweet.quantity)
+        // setSweetDetail({})
+        getSweetDetail(sweet.id)
         setDisplay("block")
     }
 
@@ -125,6 +122,17 @@ export default function Home() {
          </div>
       );
 
+      const styleSweetDetail = {
+        listStyleType: 'disc'
+     }
+
+      const listSweetDetail = sweetDetail.map(sweetDetail =>
+        <li style={ styleSweetDetail }>
+            {sweetDetail.name} {sweetDetail.quantity} {sweetDetail.size} 
+        </li>
+      );
+
+      
 
     return (
         <div>
@@ -143,7 +151,10 @@ export default function Home() {
                         <div>€ <span> {sweetModalPrice}</span>/piece</div>
                         </div>
                         <div id="sweet-modal-info-ingredient" >
-                            Sugar: 500 gr
+                            Ingredients:
+                            <ul style={{margin: 0}}>
+                            {listSweetDetail}
+                            </ul>
                         </div>
                     </div>
                 </div>  

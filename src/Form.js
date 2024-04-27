@@ -37,11 +37,23 @@ export default function Form(props) {
     }
 
     function handleOnChangePrice(e) {
-      setPrice(e.target.value)
+        if(isNaN(e.target.value)){
+            setPrice("Enter a number!");
+            setTimeout(() => setPrice(""), 700)
+        } else{
+            setPrice(e.target.value)
+        }
+        
     }
 
     function handleOnChangeQuantity(e) {
-        setQuantity(e.target.value)
+        if(isNaN(e.target.value)){
+            setQuantity("Enter a number!");
+            setTimeout(() => setQuantity(""), 700)
+        } else{
+            setQuantity(e.target.value)
+        }
+        
     }
     
     return (

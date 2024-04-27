@@ -5,13 +5,15 @@ import Form from "./Form";
 function Login(props) {
 
   const [sweets, setSweets] = useState([]);
+  const DEV_URL = 'http://localhost:8080';
+  const PROD_URL = 'http://3.125.105.131:8080';
 
   useEffect(() => {
     getAll()
   }, [])
 
   function getAll() {
-    fetch("http://localhost:8080/api/backend/v1/")
+    fetch(PROD_URL + "/api/backend/v1/")
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -38,7 +40,7 @@ function Login(props) {
     );
 
   function updateTaskName(id, name, price, quantity) {
-    const URL = `http://localhost:8080/api/backend/v1/update/${id}`;
+    const URL = `${PROD_URL}/api/backend/v1/update/${id}`;
     fetch(URL, {
       method: 'PUT',
       headers: { 'Content-type': 'application/json' },
@@ -52,7 +54,7 @@ function Login(props) {
   function addSweet(formData) {
     console.log("Data: " , formData)
     // headers: { 'Access-Control-Allow-Origin':'*' }
-    const URL = "http://localhost:8080/api/backend/v1/createForm";
+    const URL = PROD_URL + "/api/backend/v1/createForm";
     fetch(URL, {
       method: 'POST',
       body: formData
@@ -65,7 +67,7 @@ function Login(props) {
   // DELETE
   function deleteTask(id) {
     console.log("DELETE: " + id )
-    const URL = "http://localhost:8080/api/backend/v1/delete?id=" + id;
+    const URL = PROD_URL + "/api/backend/v1/delete?id=" + id;
     fetch(URL, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },
