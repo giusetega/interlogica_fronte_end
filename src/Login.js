@@ -13,7 +13,7 @@ function Login(props) {
   }, [])
 
   function getAll() {
-    fetch(PROD_URL + "/api/backend/v1/")
+    fetch(DEV_URL + "/api/backend/v1/")
       .then(response => response.json())
       .then(data => {
         console.log(data);
@@ -40,7 +40,7 @@ function Login(props) {
     );
 
   function updateTaskName(id, name, price, quantity) {
-    const URL = `${PROD_URL}/api/backend/v1/update/${id}`;
+    const URL = `${DEV_URL}/api/backend/v1/update/${id}`;
     fetch(URL, {
       method: 'PUT',
       headers: { 'Content-type': 'application/json' },
@@ -54,7 +54,7 @@ function Login(props) {
   function addSweet(formData) {
     console.log("Data: " , formData)
     // headers: { 'Access-Control-Allow-Origin':'*' }
-    const URL = PROD_URL + "/api/backend/v1/createForm";
+    const URL = DEV_URL + "/api/backend/v1/createForm";
     fetch(URL, {
       method: 'POST',
       body: formData
@@ -67,7 +67,7 @@ function Login(props) {
   // DELETE
   function deleteTask(id) {
     console.log("DELETE: " + id )
-    const URL = PROD_URL + "/api/backend/v1/delete?id=" + id;
+    const URL = DEV_URL + "/api/backend/v1/delete?id=" + id;
     fetch(URL, {
       method: 'DELETE',
       headers: { 'Content-Type': 'application/json' },

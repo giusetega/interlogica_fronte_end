@@ -21,7 +21,7 @@ export default function Home() {
     // { name: 0, quantity: 0, size: 0}
 
     useEffect(() => {
-       fetch(PROD_URL + '/api/backend/v1/')
+       fetch(DEV_URL + '/api/backend/v1/')
           .then((res) => res.json())
           .then((data) => {
              console.log(data);
@@ -33,7 +33,7 @@ export default function Home() {
     }, []);
 
     function getSweetDetail(id) {
-        fetch(PROD_URL + "/api/backend/v1/detail/" + id)
+        fetch(DEV_URL + "/api/backend/v1/detail/" + id)
           .then(response => response.json())
           .then(data => {
             console.log("Sweet detail:", data);

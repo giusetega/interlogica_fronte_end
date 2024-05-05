@@ -1,10 +1,27 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
 export default function Form(props) {
 
     const [name, setName] = useState('');
     const [price, setPrice] = useState('');
     const [quantity, setQuantity] = useState('');
+    const [isChecked, setIsChecked] = useState(false);
+    const [ingredientList, setIngredientList] = useState([]);
+
+    const DEV_URL = 'http://localhost:8080';
+    const PROD_URL = 'http://3.125.105.131:8080';
+
+    useEffect(() => {
+        fetch(DEV_URL + '/api/backend/v1/ingredients')
+           .then((res) => res.json())
+           .then((data) => {
+              console.log(data);
+              setIngredientList(data);
+           })
+           .catch((err) => {
+              console.log(err.message);
+           });
+     }, []);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -55,6 +72,31 @@ export default function Form(props) {
         }
         
     }
+
+    function handleOnChangeCheckBox(e) {
+        setIsChecked(!isChecked)        
+    }
+
+    const ingredients = ingredientList.map(({ name, quantity, size }, index) => {
+        return (
+          <li key={index}>
+            <div className="toppings-list-item">
+              <div className="left-section">
+                <input
+                  type="checkbox"
+                  id={`custom-checkbox-${index}`}
+                  name={name}
+                  value={name}
+                //   checked={checkedState[index]}
+                  onChange={() => handleOnChangeCheckBox(index)}
+                />
+                <label htmlFor={`custom-checkbox-${index}`}> {name} </label>
+              </div>
+              <div className="right-section">{quantity} {size}</div>
+            </div>
+          </li>
+        );
+    })
     
     return (
         <form onSubmit={handleSubmit}>
@@ -73,7 +115,8 @@ export default function Form(props) {
                 value={name}
                 onChange={handleOnChangeName}
             />
-          <label for="price">Price:</label>  
+
+            <label for="price">Price:</label>  
             <input
                 id="price"
                 type="text"
@@ -84,7 +127,7 @@ export default function Form(props) {
                 onChange={handleOnChangePrice}
             />
 
-          <label for="quantity">Quantity:</label>  
+            <label for="quantity">Quantity:</label>  
             <input
                 id="quantity"
                 type="text"
@@ -95,9 +138,17 @@ export default function Form(props) {
                 onChange={handleOnChangeQuantity}
             />
 
-          <label for="image">Image:</label><br></br>
-          {/* <input type="file" id="image" name="image" /> */}
-          <input
+            {/* <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
+            <label for="vehicle1"> I have a bike</label><br/> */}
+
+            <h3>Select Toppings</h3>
+            <ul className="toppings-list">
+                {ingredients}
+            </ul>
+
+            <label for="image">Image:</label><br></br>
+            {/* <input type="file" id="image" name="image" /> */}
+            <input
                 id="image"
                 type="file"
                 name="image"
@@ -105,7 +156,7 @@ export default function Form(props) {
                 required
             />
 
-          {/* <input id="file" type="file" multiple /> */}
+            {/* <input id="file" type="file" multiple /> */}
             <button type="submit" className="btn btn__primary btn__lg">
                 Add
             </button>
