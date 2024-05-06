@@ -1,24 +1,13 @@
 import React, { useEffect, useState } from 'react';
-// import SweetModal from './SweetModal';
 
 export default function Home() {
-    
 
-    // useEffect(() => {
-    //     window.scrollTo(0, 0);
-    //     document.title = "AVES | Parkour team";
-    //     document.querySelector('meta[name="description"]')
-    //         .setAttribute('content',
-    //             "AVES comprende tre membri: Manuel Zanaga, Giuseppe Tegano e Karim Gillio. Come parkour team, il gruppo partecipa a diverse attività e organizza corsi ad Ivrea e nel canavese.");
-
-    // })
 
     const DEV_URL = 'http://localhost:8080';
     const PROD_URL = 'http://3.125.105.131:8080';
 
     const [sweetList, setSweetList] = useState([]);
     const [sweetDetail, setSweetDetail] = useState([])
-    // { name: 0, quantity: 0, size: 0}
 
     useEffect(() => {
        fetch(DEV_URL + '/api/backend/v1/')
@@ -53,7 +42,6 @@ export default function Home() {
         setSweetModalmage(sweet.image)
         setSweetModaPrice(sweet.price)
         setSweetModalQuantity(sweet.quantity)
-        // setSweetDetail({})
         getSweetDetail(sweet.id)
         setDisplay("block")
     }

@@ -87,7 +87,6 @@ export default function Form(props) {
                   id={`custom-checkbox-${index}`}
                   name={name}
                   value={name}
-                //   checked={checkedState[index]}
                   onChange={() => handleOnChangeCheckBox(index)}
                 />
                 <label htmlFor={`custom-checkbox-${index}`}> {name} </label>
@@ -138,16 +137,13 @@ export default function Form(props) {
                 onChange={handleOnChangeQuantity}
             />
 
-            {/* <input type="checkbox" id="vehicle1" name="vehicle1" value="Bike" />
-            <label for="vehicle1"> I have a bike</label><br/> */}
 
-            <h3>Select Toppings</h3>
+            <h3>Select Ingredients</h3>
             <ul className="toppings-list">
                 {ingredients}
             </ul>
 
             <label for="image">Image:</label><br></br>
-            {/* <input type="file" id="image" name="image" /> */}
             <input
                 id="image"
                 type="file"
@@ -156,7 +152,6 @@ export default function Form(props) {
                 required
             />
 
-            {/* <input id="file" type="file" multiple /> */}
             <button type="submit" className="btn btn__primary btn__lg">
                 Add
             </button>
