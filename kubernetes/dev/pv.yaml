@@ -20,4 +20,4 @@ spec:
             - key: kubernetes.io/hostname
               operator: In
               values:
-                - aks-agentpool-14390526-vmss000000
+                - aks-agentpool-13767023-vmss000000
