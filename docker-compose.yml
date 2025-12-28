@@ -1,0 +1,14 @@
+services:
+  frontend:
+    build: .
+    image: interlogica-fe:v1.0.0
+    container_name: dockerized-frontend
+    ports:
+      - "3000:3000"
+    hostname: localhost
+    volumes:
+      - interlogica_volume:/react-docker-interlogica/public/img
+
+volumes:
+  interlogica_volume:
+    external: true
