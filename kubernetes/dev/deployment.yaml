@@ -19,6 +19,9 @@ spec:
           image: ghcr.io/giusetega/interlogica_fronte_end:latest
           ports:
             - containerPort: 3000
+          env:
+            - name: REACT_APP_API_BASE_URL
+              value: "http://20.121.96.160"
           volumeMounts:
             - name: interlogica-volume
               mountPath: react-docker-interlogica/public/img
