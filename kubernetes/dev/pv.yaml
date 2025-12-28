@@ -9,7 +9,6 @@ spec:
   accessModes:
     - ReadWriteOnce
   persistentVolumeReclaimPolicy: Delete
-#  storageClassName: local-storage
   storageClassName: local-storage
   local:
     path: /mnt/local-data
