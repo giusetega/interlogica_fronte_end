@@ -21,7 +21,7 @@ spec:
             - containerPort: 3000
           env:
             - name: REACT_APP_API_BASE_URL
-              value: "http://20.121.96.160"
+              value: "http://10.224.0.4:30080"
           volumeMounts:
             - name: interlogica-volume
               mountPath: react-docker-interlogica/public/img
