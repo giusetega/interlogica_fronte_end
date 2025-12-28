@@ -31,7 +31,7 @@ jobs:
       - name: Build docker tag
         run: |
           echo "Packing application to registry..."
-          docker buildx build -t ${{ env.DOCKER_TAG }} -t ${{ env.DOCKER_TAG_GHCR }} .
+          docker buildx build -t ${{ env.DOCKER_TAG_GHCR }} .
 
       - name: GHCR login
         run: echo ${{ secrets.GITHUB_TOKEN }} | docker login ghcr.io --username giusetega --password-stdin
