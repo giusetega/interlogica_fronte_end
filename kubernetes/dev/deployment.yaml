@@ -16,9 +16,9 @@ spec:
     spec:
       containers:
         - name: interlogica-fe
-          image: ghcr/giusetega/interlogica_fronte_end:latest
+          image: ghcr.io/giusetega/interlogica_fronte_end:latest
           ports:
-            - containerPort: 8080
+            - containerPort: 3000
           volumeMounts:
             - name: interlogica-volume
               mountPath: react-docker-interlogica/public/img
