@@ -29,6 +29,6 @@ jobs:
       - name: Deploy to dev
         run: |
           kubectl apply -f kubernetes/dev
-          kubectl set image deployment/backend-deployment \
-            interlogica-be=giusetega/interlogica:${{ github.sha }} \
+          kubectl set image deployment/frontend-deployment \
+            interlogica-fe=giusetega/interlogica_fronte_end:${{ github.sha }} \
             -n default
