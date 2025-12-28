@@ -17,12 +17,6 @@ jobs:
       - name: Install dependencies
         run: npm install
 
-      - name: Upload artifact
-        uses: actions/upload-artifact@v5
-        with:
-          name: react-build
-          path: build
-
   docker:
     name: Push Docker Image
     runs-on: ubuntu-latest
@@ -33,12 +27,6 @@ jobs:
       DOCKER_TAG_GHCR: ghcr.io/${{ github.repository_owner }}/interlogica:${{ github.sha }}
     steps:
       - uses: actions/checkout@v5
-
-      - name: Download jar
-        uses: actions/download-artifact@v5
-        with:
-          name: react-build
-          path: .
 
       - name: Build docker tag
         run: |
