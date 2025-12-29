@@ -7,7 +7,8 @@ services:
       - "80:80"
     hostname: localhost
     volumes:
-      - interlogica_volume:/react-docker-interlogica/public/img
+      - interlogica_volume:/usr/share/nginx/html/img
+      # - interlogica_volume:/react-docker-interlogica/public/img
     networks:
       - interlogica-net
     extra_hosts:
