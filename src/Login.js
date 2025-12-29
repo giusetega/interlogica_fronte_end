@@ -11,7 +11,7 @@ function Login(props) {
   }, [])
 
   function getAll() {
-    fetch("http://localhost:8080/api/backend/v1/")
+    fetch("api/backend/v1/")
       .then(response => response.json())
       .then(data => {
         console.log(data);
