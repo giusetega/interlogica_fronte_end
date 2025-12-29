@@ -15,9 +15,9 @@ export default function Home() {
 
     const [sweetList, setSweetList] = useState([]);
     const API_BASE = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
-
+    
     useEffect(() => {
-       fetch(`${API_BASE}/api/backend/v1/`)
+       fetch(`/api/backend/v1/`)
           .then((res) => res.json())
           .then((data) => {
              console.log(data);

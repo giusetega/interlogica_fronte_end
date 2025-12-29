@@ -4,11 +4,22 @@ services:
     image: interlogica-fe:v1.0.0
     container_name: dockerized-frontend
     ports:
-      - "3000:3000"
+      - "80:80"
     hostname: localhost
     volumes:
       - interlogica_volume:/react-docker-interlogica/public/img
+    networks:
+      - interlogica-net
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
 
 volumes:
   interlogica_volume:
     external: true
+
+networks:
+  interlogica-net:
+    external: true
+
+# docker volume create interlogica_volume
+# docker network create interlogica-net
