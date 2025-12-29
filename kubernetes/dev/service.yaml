@@ -9,4 +9,4 @@ spec:
   ports:
     - name: http
       port: 80        # public port
-      targetPort: 3000 # container port
+      targetPort: 80 # container port
