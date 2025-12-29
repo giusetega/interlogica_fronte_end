@@ -17,7 +17,7 @@ export default function Home() {
     const API_BASE = process.env.REACT_APP_API_BASE_URL || 'http://localhost:8080';
     
     useEffect(() => {
-       fetch(`http://backend-svc:8080/api/backend/v1/`)
+       fetch(`/api/backend/v1/`)
           .then((res) => res.json())
           .then((data) => {
              console.log(data);
