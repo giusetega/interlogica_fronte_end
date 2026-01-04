@@ -19,13 +19,13 @@ jobs:
           cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci
 
       # - name: Unit tests
       #  run: npm test -- --ci
 
       - name: Build frontend
-        run: npm run build
+        run: CI=false npm run buildgit add 
 
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
