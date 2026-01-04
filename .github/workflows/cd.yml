@@ -26,9 +26,18 @@ jobs:
       - name: Get k8s details
         run: kubectl get nodes
 
+      - name: Set image (kustomize)
+        run: |
+          cd kubernetes/overlays/dev
+          kustomize edit set image ghcr.io/giusetega/interlogica=ghcr.io/${{ github.repository_owner }}/interlogica:${{ github.sha }}
+
       - name: Deploy to dev
         run: |
-          kubectl apply -f kubernetes/dev
-          kubectl set image deployment/frontend-deployment \
-            interlogica-fe=ghcr.io/${{ github.repository_owner }}/interlogica_fronte_end:${{ github.sha }} \
-            -n default
+          kubectl apply -k kubernetes/overlays/dev
+
+      # - name: Deploy to dev
+      #   run: |
+      #     kubectl apply -f kubernetes/dev
+      #     kubectl set image deployment/frontend-deployment \
+      #       interlogica-fe=ghcr.io/${{ github.repository_owner }}/interlogica_fronte_end:${{ github.sha }} \
+      #       -n default

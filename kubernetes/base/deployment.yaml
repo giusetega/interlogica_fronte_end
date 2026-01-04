@@ -1,0 +1,33 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: frontend-deployment
+  labels:
+    app: frontend
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: frontend
+  template:
+    metadata:
+      labels:
+        app: frontend
+    spec:
+      containers:
+        - name: interlogica-fe
+          image: ghcr.io/giusetega/interlogica_fronte_end:latest
+          ports:
+            - containerPort: 80
+          env:
+            - name: REACT_APP_API_BASE_URL
+              value: "http://backend-svc:8080"
+          volumeMounts:
+            - name: interlogica-volume
+              mountPath: /usr/share/nginx/html/img
+              # mountPath: react-docker-interlogica/public/img
+
+      volumes:
+        - name: interlogica-volume
+          persistentVolumeClaim:
+            claimName: interlogica-pvc

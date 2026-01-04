@@ -27,7 +27,6 @@ jobs:
       - name: Build frontend
         run: CI=false npm run build
 
-
       - name: Upload build artifact
         uses: actions/upload-artifact@v4
         with:
@@ -59,7 +58,7 @@ jobs:
           echo "Packing application to registry..."
           docker build -t ${{ env.DOCKER_TAG_GHCR }} .
 
-      - name: Push docker tag to docker hub and ghcr
+      - name: Push docker tag to ghcr
         run: |
           echo "Pushing to github..."
           docker push ${{ env.DOCKER_TAG_GHCR }}
